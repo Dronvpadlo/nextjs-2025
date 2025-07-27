@@ -1,18 +1,24 @@
 import styles from "./page.module.css";
 import Form from "next/form";
+import {getMeals, saveMeal} from "@/server-actions/ServerActions";
 
-export default function Home() {
+export default async function Home() {
+  const mealsArray = await getMeals();
+
+
   return (
     <div className={styles.page}>
-        {/*<form action="/submit">*/}
-        {/*    <input type="text" placeholder={"username"} name={"name"}/>*/}
-        {/*    <button>Submit</button>*/}
-        {/*</form>*/}
-
-        <Form action={'/submit'} method="POST">
-            <input type="text" name={'name'} placeholder={'name'}/>
+        <Form action={saveMeal}>
+            <input type="text" name={'title'} placeholder={'title'}/>
             <button>Send</button>
+
+
         </Form>
+
+        <div>
+            {mealsArray.map((meal, index) => <p key={index}>{meal.id}. {meal.title}</p>)}
+        </div>
+
     </div>
   );
 }
