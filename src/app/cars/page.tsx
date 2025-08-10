@@ -1,9 +1,16 @@
 import React from 'react';
-import {getCars} from "@/app/services/api.service";
+import {createCar, getCars} from "@/app/services/api.service";
 import CarComponent from "@/app/components/CarComponent";
 
-const CarsPage = async () => {
+type Props = {
+    searchParams: Promise<{
+        [key: string]: string | string[] | undefined
+    }>
+}
+const CarsPage = async ({searchParams}) => {
 
+    const car = await searchParams;
+    await createCar(car)
     const cars = await getCars()
     return (
         <div>
