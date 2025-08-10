@@ -1,13 +1,11 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-import MenuComponent from "@/app/menu/menuComponent";
+import FormComponent from "@/app/components/FormComponent";
 
 export default function Home() {
     return (
         <div>
-            <MenuComponent/>
-            <hr/>
-            Home
+            HomePage
+            <FormComponent/>
+
         </div>
   );
 }
